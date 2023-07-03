@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <header th:replace="layout/plantilla :: header"></header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a th:href="@{/agregar}">[[#{persona.crear}]]</a>  
+        <div th:if="${personas != null and !personas.empty}">
+            <table border="1">
+                <tr>
+                    <th>[[#{persona.nombre}]]</th>
+                    <th>[[#{persona.apellidos}]]</th>
+                    <th>[[#{persona.correo}]]</th>
+                    <th>[[#{persona.telefono}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+                </tr>
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.nombre}">Mostrar Nombre</td>
+                    <td th:text="${persona.apellidos}">Mostrar Apellidos</td>
+                    <td th:text="${persona.email}">Mostrar Correo</td>
+                    <td th:text="${persona.telefono}">Mostrar Telefono</td>
+                    <td> <a th:href="@{/editar/} + ${persona.idPersona}"/>[[#{accion.editar}]]</td>
+                    <td> <a th:href="@{/eliminar/} + ${persona.idPersona}"/>[[#{accion.eliminar}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${personas == null or !personas.empty}">
+          
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
